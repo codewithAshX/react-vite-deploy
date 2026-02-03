@@ -43,13 +43,13 @@ const Preloader = ({ finishLoading }: { finishLoading: () => void }) => {
         <Image 
           src="/Riddhi-Builders-4-1-1024x611.PNG" 
           alt="Riddhi Builders Logo" 
-          width={280} // Adjusted size for your specific logo aspect ratio
+          width={280} 
           height={160} 
-          className="brightness-[1.5] contrast-[1.2] sepia hue-rotate-[90deg] saturate-[6] drop-shadow-[0_0_20px_rgba(16,185,129,0.4)]"
+          // Advanced filter to convert Orange/Blue logo to Emerald
+          className="brightness-[1.2] contrast-[1.2] sepia-[1] hue-rotate-[100deg] saturate-[10] drop-shadow-[0_0_20px_rgba(16,185,129,0.5)]"
           priority
         />
         
-        {/* Shimmer effect passing over the logo */}
         <motion.div 
           initial={{ x: "-100%" }}
           animate={{ x: "100%" }}
@@ -157,31 +157,6 @@ function HeroSection({ isLoaded }: { isLoaded: boolean }) {
   );
 }
 
-const PhilosophySection = () => (
-  <section className="bg-zinc-950 py-32 text-zinc-300">
-    <div className="mx-auto max-w-7xl px-6">
-      <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:items-center">
-        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-          <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-emerald-500">The Philosophy</h2>
-          <h3 className="mt-6 text-4xl font-light leading-tight text-white sm:text-5xl">
-            Precision in every <span className="italic">millimeter</span>. <br />
-            Trust in every <span className="italic">corner</span>.
-          </h3>
-          <div className="mt-8 space-y-6 text-lg leading-relaxed text-zinc-400">
-            <p>Real estate is a canvas for human experience. Every layout is optimized for natural light.</p>
-            <p>Our commitment to "On-Time Delivery" is a respect for your time and your dreams.</p>
-          </div>
-        </motion.div>
-        
-        <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-zinc-900 lg:scale-110">
-           <Image src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070" alt="Detailing" fill className="object-cover opacity-80" />
-           <div className="absolute inset-0 ring-1 ring-inset ring-white/10" />
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
 /* ================= MAIN PAGE ================= */
 
 export default function HomePage() {
@@ -201,7 +176,30 @@ export default function HomePage() {
         transition={{ duration: 1.2 }}
       >
         <HeroSection isLoaded={!isLoading} />
-        <PhilosophySection />
+        
+        {/* Philosophy Section */}
+        <section className="bg-zinc-950 py-32 text-zinc-300">
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:items-center">
+              <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+                <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-emerald-500">The Philosophy</h2>
+                <h3 className="mt-6 text-4xl font-light leading-tight text-white sm:text-5xl">
+                  Precision in every <span className="italic">millimeter</span>. <br />
+                  Trust in every <span className="italic">corner</span>.
+                </h3>
+                <div className="mt-8 space-y-6 text-lg leading-relaxed text-zinc-400">
+                  <p>Real estate is a canvas for human experience. Every layout is optimized for natural light.</p>
+                  <p>Our commitment to "On-Time Delivery" is a respect for your time and your dreams.</p>
+                </div>
+              </motion.div>
+              
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-zinc-900 lg:scale-110">
+                 <Image src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070" alt="Detailing" fill className="object-cover opacity-80" />
+                 <div className="absolute inset-0 ring-1 ring-inset ring-white/10" />
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* DESIGN PILLARS */}
         <section className="bg-white py-32 text-zinc-900">

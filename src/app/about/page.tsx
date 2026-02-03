@@ -85,7 +85,7 @@ export default function AboutPage() {
               <span className="text-emerald-500 text-sm font-bold uppercase tracking-widest">01. Vision</span>
               <h3 className="text-3xl text-white mt-6 mb-8 font-light">To redefine urban landscapes with global standards.</h3>
               <p className="text-zinc-400 leading-relaxed">
-                To be Hyderabad’s most trusted real estate developer, delivering luxury spaces 
+                To be Chandrapur’s most trusted real estate developer, delivering luxury spaces 
                 that don’t just meet expectations, but redefine what "living" feels like in 
                 the modern era.
               </p>
