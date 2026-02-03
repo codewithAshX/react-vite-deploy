@@ -1,199 +1,207 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Clock } from "lucide-react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Clock, Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
 
-const container = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
-};
+/* ================= ANIMATION VARIANTS ================= */
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6 },
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } 
   },
 };
 
-const fadeSide = (dir: "left" | "right") => ({
-  hidden: { opacity: 0, x: dir === "left" ? -40 : 40 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.7 },
-  },
-});
+const containerStagger = {
+  visible: { transition: { staggerChildren: 0.1 } }
+};
 
-export default function Contact() {
-  const [success, setSuccess] = useState(false);
+export default function ContactPage() {
   const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-
-    // simulate API call
+    // Simulate high-end concierge response time
     setTimeout(() => {
       setLoading(false);
-      setSuccess(true);
-
-      setTimeout(() => setSuccess(false), 3000);
-    }, 2000);
+      setSubmitted(true);
+      setTimeout(() => setSubmitted(false), 5000);
+    }, 1500);
   };
 
   return (
-    <motion.div
-      className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100 py-24"
-      variants={container}
-      initial="hidden"
-      animate="visible"
-    >
-      <div className="max-w-6xl mx-auto px-6">
-
-        {/* ================= SUCCESS TOAST ================= */}
-        {success && (
+    <div className="min-h-screen bg-[#0a0a0a] text-zinc-400 selection:bg-emerald-500 selection:text-white">
+      
+      {/* ================= SUCCESS TOAST ================= */}
+      <AnimatePresence>
+        {submitted && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="fixed top-6 right-6 bg-emerald-600 text-white px-6 py-3 rounded-lg shadow-lg z-50"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 50 }}
+            className="fixed bottom-10 right-10 z-[100] bg-zinc-900 border border-emerald-500/50 p-6 rounded-2xl shadow-2xl flex items-center gap-4"
           >
-            ✅ Message sent successfully!
+            <div className="h-10 w-10 bg-emerald-500/10 rounded-full flex items-center justify-center text-emerald-500">
+              <CheckCircle2 size={24} />
+            </div>
+            <div>
+              <p className="text-white font-bold">Inquiry Received</p>
+              <p className="text-xs text-zinc-500 uppercase tracking-widest">Our team will respond shortly.</p>
+            </div>
           </motion.div>
         )}
+      </AnimatePresence>
 
-        {/* ================= HEADER ================= */}
-        <motion.div variants={fadeUp} className="text-center mb-20">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
-            Contact <span className="text-emerald-600">Us</span>
-          </h1>
-          <p className="text-gray-600 max-w-xl mx-auto">
-            We’d love to hear from you. Reach out for inquiries, partnerships,
-            or site visits.
-          </p>
-        </motion.div>
-
-        {/* ================= CONTENT ================= */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-14 max-w-5xl mx-auto">
-
-          {/* ================= FORM ================= */}
-          <motion.div
-            variants={fadeSide("left")}
-            className="bg-white p-10 rounded-2xl shadow-md hover:shadow-xl transition-all"
+      <section className="relative pt-32 pb-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          
+          {/* ================= HEADER ================= */}
+          <motion.div 
+            initial="hidden" 
+            animate="visible" 
+            variants={fadeUp} 
+            className="mb-20"
           >
-            <h2 className="text-2xl font-semibold mb-8 text-gray-900">
-              Get In Touch
-            </h2>
+            <span className="text-emerald-500 uppercase tracking-[0.5em] text-xs font-bold mb-4 block">
+              Concierge Desk
+            </span>
+            <h1 className="text-5xl md:text-8xl font-light text-white tracking-tighter leading-none mb-8">
+              Let’s start a <br />
+              <span className="italic font-serif text-emerald-100">Conversation.</span>
+            </h1>
+          </motion.div>
 
-            <form className="space-y-6" onSubmit={handleSubmit}>
-              {["Name", "Email"].map((label) => (
-                <motion.div key={label} variants={fadeUp}>
-                  <label className="block text-sm font-medium mb-2 text-gray-700">
-                    {label}
-                  </label>
-                  <input
-                    type={label === "Email" ? "email" : "text"}
-                    required
-                    placeholder={`Your ${label}`}
-                    className="w-full rounded-lg border border-gray-300 px-4 py-3
-                               text-gray-900 placeholder-gray-400 bg-white
-                               focus:outline-none focus:ring-2 focus:ring-emerald-500
-                               transition"
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+            
+            {/* ================= LEFT: FORM ================= */}
+            <motion.div 
+              initial="hidden" 
+              whileInView="visible" 
+              viewport={{ once: true }}
+              variants={fadeUp}
+              className="lg:col-span-7 bg-zinc-900/50 border border-white/5 p-8 md:p-12 rounded-3xl backdrop-blur-sm"
+            >
+              <form onSubmit={handleSubmit} className="space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-2">
+                    <label className="text-[10px] uppercase tracking-[0.3em] font-bold text-zinc-500 ml-1">Full Name</label>
+                    <input 
+                      required 
+                      type="text" 
+                      placeholder="John Doe"
+                      className="w-full bg-zinc-800/50 border border-white/5 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-emerald-500/50 transition-all placeholder:text-zinc-600"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] uppercase tracking-[0.3em] font-bold text-zinc-500 ml-1">Email Address</label>
+                    <input 
+                      required 
+                      type="email" 
+                      placeholder="john@example.com"
+                      className="w-full bg-zinc-800/50 border border-white/5 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-emerald-500/50 transition-all placeholder:text-zinc-600"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-[10px] uppercase tracking-[0.3em] font-bold text-zinc-500 ml-1">Inquiry Type</label>
+                  <select className="w-full bg-zinc-800/50 border border-white/5 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-emerald-500/50 transition-all appearance-none cursor-pointer">
+                    <option className="bg-zinc-900">Residential Investment</option>
+                    <option className="bg-zinc-900">Commercial Property</option>
+                    <option className="bg-zinc-900">Property Management</option>
+                    <option className="bg-zinc-900">Legal Consulting</option>
+                  </select>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-[10px] uppercase tracking-[0.3em] font-bold text-zinc-500 ml-1">Message</label>
+                  <textarea 
+                    required 
+                    rows={5} 
+                    placeholder="Tell us about your project or requirements..."
+                    className="w-full bg-zinc-800/50 border border-white/5 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-emerald-500/50 transition-all placeholder:text-zinc-600 resize-none"
                   />
-                </motion.div>
-              ))}
+                </div>
 
-              <motion.div variants={fadeUp}>
-                <label className="block text-sm font-medium mb-2 text-gray-700">
-                  Message
-                </label>
-                <textarea
-                  required
-                  placeholder="Your message..."
-                  className="w-full rounded-lg border border-gray-300 px-4 py-3 h-32
-                             text-gray-900 placeholder-gray-400 bg-white
-                             focus:outline-none focus:ring-2 focus:ring-emerald-500
-                             transition"
-                />
+                <button 
+                  disabled={loading}
+                  className="group w-full md:w-auto bg-emerald-600 hover:bg-emerald-500 text-white px-10 py-5 rounded-full font-bold uppercase tracking-tighter flex items-center justify-center gap-4 transition-all disabled:opacity-50"
+                >
+                  {loading ? "Transmitting..." : "Send Inquiry"}
+                  {!loading && <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />}
+                </button>
+              </form>
+            </motion.div>
+
+            {/* ================= RIGHT: INFO ================= */}
+            <div className="lg:col-span-5 space-y-12">
+              
+              {/* Contact Cards */}
+              <motion.div 
+                variants={containerStagger}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="space-y-8"
+              >
+                {[
+                  { icon: MapPin, label: "HQ Address", value: "Kabir Nagar, Vivek Nagar, Chandrapur, Maharashtra 442401" },
+                  { icon: Phone, label: "Direct Line", value: "+91 98765 43210" },
+                  { icon: Mail, label: "Official Correspondence", value: "riddhibuilders@gmail.com" },
+                ].map((item, i) => (
+                  <motion.div variants={fadeUp} key={i} className="flex gap-6 group">
+                    <div className="h-14 w-14 rounded-2xl bg-zinc-900 border border-white/5 flex items-center justify-center text-emerald-500 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-500">
+                      <item.icon size={24} strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-zinc-500 mb-1">{item.label}</p>
+                      <p className="text-white text-lg font-light tracking-tight">{item.value}</p>
+                    </div>
+                  </motion.div>
+                ))}
               </motion.div>
 
-              {/* ================= SUBMIT BUTTON ================= */}
-              <motion.button
-                type="submit"
-                disabled={loading}
-                whileHover={!loading ? { scale: 1.03 } : {}}
-                whileTap={!loading ? { scale: 0.97 } : {}}
-                className={`w-full flex items-center justify-center gap-2 py-3 rounded-lg
-                  font-medium shadow-md transition
-                  ${
-                    loading
-                      ? "bg-emerald-400 cursor-not-allowed"
-                      : "bg-emerald-600 hover:bg-emerald-700 text-white"
-                  }`}
+              {/* Office Hours */}
+              <motion.div 
+                initial={{ opacity: 0 }} 
+                whileInView={{ opacity: 1 }} 
+                className="p-8 rounded-3xl bg-emerald-500/5 border border-emerald-500/10"
               >
-                {loading ? (
-                  <>
-                    <span className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    Sending...
-                  </>
-                ) : (
-                  "Send Message"
-                )}
-              </motion.button>
-            </form>
-          </motion.div>
+                <div className="flex items-center gap-3 mb-6">
+                  <Clock className="text-emerald-500" size={20} />
+                  <h3 className="text-white font-bold uppercase tracking-widest text-sm">Service Hours</h3>
+                </div>
+                <div className="space-y-4 text-sm tracking-wide">
+                  <div className="flex justify-between border-b border-white/5 pb-2">
+                    <span>Monday – Friday</span>
+                    <span className="text-white">09:00 — 18:00</span>
+                  </div>
+                  <div className="flex justify-between border-b border-white/5 pb-2">
+                    <span>Saturday</span>
+                    <span className="text-white">10:00 — 16:00</span>
+                  </div>
+                  <div className="flex justify-between text-zinc-600 italic">
+                    <span>Sunday</span>
+                    <span>By Appointment Only</span>
+                  </div>
+                </div>
+              </motion.div>
 
-          {/* ================= INFO ================= */}
-          <motion.div
-            variants={fadeSide("right")}
-            className="bg-white p-10 rounded-2xl shadow-md hover:shadow-xl transition-all"
-          >
-            <h2 className="text-2xl font-semibold mb-8 text-gray-900">
-              Contact Information
-            </h2>
-
-            <motion.div variants={container} className="space-y-6 text-gray-700">
-              {[
-                "123 Real Estate St, City, State 12345",
-                "(555) 123-4567",
-                "info@realestate.com",
-              ].map((item) => (
-                <motion.div
-                  key={item}
-                  variants={fadeUp}
-                  className="flex items-start gap-3"
-                >
-                  <span className="h-2 w-2 mt-2 rounded-full bg-emerald-500" />
-                  <span>{item}</span>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            {/* ================= OFFICE HOURS ================= */}
-            <motion.div variants={fadeUp} className="mt-10">
-              <div className="flex items-center gap-2 mb-3">
-                <Clock className="text-emerald-600" size={20} />
-                <h3 className="text-lg font-semibold text-gray-900">
-                  Office Hours
-                </h3>
-              </div>
-
-              <p className="text-gray-700">
-                Monday – Friday: 9:00 AM – 6:00 PM
-              </p>
-              <p className="text-gray-700">
-                Saturday: 10:00 AM – 4:00 PM
-              </p>
-              <p className="text-gray-700">
-                Sunday: Closed
-              </p>
-            </motion.div>
-
-          </motion.div>
+            </div>
+          </div>
         </div>
-      </div>
-    </motion.div>
+      </section>
+
+      {/* ================= MAP PLACEHOLDER ================= */}
+      <section className="h-[400px] w-full bg-zinc-900 relative flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-1000">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-transparent to-[#0a0a0a] z-10" />
+        <p className="text-zinc-500 text-xs uppercase tracking-[0.5em] relative z-20">Live Location Feed — Secure Interface</p>
+      </section>
+    </div>
   );
 }

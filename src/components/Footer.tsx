@@ -1,6 +1,6 @@
 "use client";
-
 import { motion } from "framer-motion";
+// import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -12,194 +12,168 @@ import {
   Mail,
   Phone,
   MapPin,
+  ArrowRight,
 } from "lucide-react";
 
-/* ================= FOOTER ================= */
+// Variants for smoother, hardware-accelerated animations
+const footerVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="relative bg-[#0b0f19] text-gray-300 overflow-hidden">
+    <footer className="relative bg-[#050505] text-zinc-400 overflow-hidden pt-12 md:pt-20 border-t border-white/5">
+      
+      {/* Optimized Background Lines - hidden on mobile to save paint cycles */}
+      <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-white/5 to-transparent hidden lg:block pointer-events-none" />
+      <div className="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-white/5 to-transparent hidden lg:block pointer-events-none" />
 
-      {/* GLOW ACCENT */}
-      <div className="absolute -top-32 left-1/2 -translate-x-1/2
-                      h-64 w-64 bg-emerald-600/20 blur-[120px]" />
+      <div className="max-w-7xl mx-auto px-6">
+        
+        {/* PRE-FOOTER: NEWSLETTER */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 pb-16 border-b border-white/5">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={footerVariants}>
+            <h3 className="text-2xl md:text-3xl font-light text-white tracking-tighter mb-4">
+              Stay updated on <span className="italic font-serif text-emerald-100">upcoming landmarks.</span>
+            </h3>
+            <p className="text-sm text-zinc-500 max-w-md">
+              Join our private mailing list for early access to premium listings and market intelligence reports.
+            </p>
+          </motion.div>
+          
+          <div className="flex items-center">
+            <form className="relative w-full max-w-md group" onSubmit={(e) => e.preventDefault()}>
+              <input 
+                type="email" 
+                autoComplete="email"
+                placeholder="Email Address" 
+                className="w-full bg-transparent border-b border-zinc-800 py-4 outline-none focus:border-emerald-500 transition-colors placeholder:text-zinc-700 text-white"
+              />
+              <button 
+                type="submit"
+                aria-label="Subscribe"
+                className="absolute right-0 bottom-4 text-emerald-500 hover:text-white transition-transform hover:translate-x-1"
+              >
+                <ArrowRight size={20} />
+              </button>
+            </form>
+          </div>
+        </div>
 
-      {/* ================= TOP ================= */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="relative max-w-7xl mx-auto px-6 py-20
-                   grid grid-cols-1 md:grid-cols-4 gap-14"
-      >
-        {/* ================= BRAND ================= */}
-        <div>
-          <div className="flex items-center gap-4 mb-6">
-            <div className="relative h-16 w-28">
+        {/* MAIN CONTENT */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-12 md:gap-16 py-16">
+          
+          <div className="md:col-span-4">
+            <Link href="/" className="inline-block mb-6 grayscale invert brightness-200 opacity-80 hover:opacity-100 transition-opacity">
               <Image
                 src="/Riddhi-Builders-4-1-1024x611.PNG"
                 alt="Riddhi Builders Logo"
-                fill
+                width={120}
+                height={43}
+                loading="lazy"
                 className="object-contain"
-                priority
               />
-            </div>
-
-            <span className="text-lg font-bold text-white leading-tight">
-             
-            </span>
-          </div>
-
-          <p className="text-sm text-gray-400 leading-relaxed">
-            A trusted real estate developer delivering premium residential
-            and commercial spaces with transparency, innovation, and value.
-          </p>
-
-          {/* SOCIALS */}
-          <div className="flex gap-4 mt-6">
-            <SocialIcon href="https://facebook.com" Icon={Facebook} />
-            <SocialIcon href="https://twitter.com" Icon={Twitter} />
-            <SocialIcon href="https://linkedin.com" Icon={Linkedin} />
-            <SocialIcon href="https://instagram.com" Icon={Instagram} />
-            <SocialIcon href="https://youtube.com" Icon={Youtube} />
-          </div>
-        </div>
-
-        {/* ================= QUICK LINKS ================= */}
-        <div>
-          <h4 className="text-lg font-semibold text-white mb-6">
-            Quick Links
-          </h4>
-
-          <ul className="space-y-3 text-sm">
-            <FooterLink href="/">Home</FooterLink>
-            <FooterLink href="/about">About Us</FooterLink>
-            <FooterLink href="/projects">Projects</FooterLink>
-            <FooterLink href="/listings">Listings</FooterLink>
-            <FooterLink href="/contact">Contact Us</FooterLink>
-            <FooterLink href="/nri">NRI Corner</FooterLink>
-          </ul>
-        </div>
-
-        {/* ================= SERVICES ================= */}
-        <div>
-          <h4 className="text-lg font-semibold text-white mb-6">
-            Our Services
-          </h4>
-
-          <ul className="space-y-3 text-sm">
-            <li>Residential Properties</li>
-            <li>Commercial Spaces</li>
-            <li>Open Plots</li>
-            <li>Investment Consulting</li>
-            <li>Property Management</li>
-          </ul>
-        </div>
-
-        {/* ================= CONTACT ================= */}
-        <div>
-          <h4 className="text-lg font-semibold text-white mb-6">
-            Contact Us
-          </h4>
-
-          <div className="space-y-4 text-sm text-gray-400">
-            <div className="flex items-start gap-3">
-              <MapPin size={16} className="mt-1 text-emerald-500" />
-              <span>
-                Chandrapur, Maharashtra <br />
-                India
-              </span>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <Phone size={16} className="text-emerald-500" />
-              <a href="tel:+919549546568" className="hover:text-white">
-                +91 95495 46568
-              </a>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <Mail size={16} className="text-emerald-500" />
-              <a
-                href="mailto:info@riddhibuilders.com"
-                className="hover:text-white"
-              >
-                www.riddhibuilders.com
-              </a>
+            </Link>
+            <p className="text-sm leading-relaxed mb-8 max-w-xs">
+              Defining the skyline of Maharashtra with high-yield residential 
+              assets and sustainable commercial architecture.
+            </p>
+            <div className="flex gap-3">
+              <SocialIcon href="#" Icon={Linkedin} label="LinkedIn" />
+              <SocialIcon href="#" Icon={Instagram} label="Instagram" />
+              <SocialIcon href="#" Icon={Facebook} label="Facebook" />
+              <SocialIcon href="#" Icon={Youtube} label="YouTube" />
             </div>
           </div>
-        </div>
-      </motion.div>
 
-      {/* ================= BOTTOM BAR ================= */}
-      <div className="border-t border-gray-800">
-        <div
-          className="max-w-7xl mx-auto px-6 py-6
-                     flex flex-col md:flex-row
-                     justify-between items-center
-                     text-sm text-gray-400"
-        >
+          <div className="md:col-span-2">
+            <h4 className="text-[10px] uppercase tracking-[0.3em] font-bold text-white mb-6">Navigation</h4>
+            <ul className="space-y-3">
+              <FooterLink href="/about">Perspective</FooterLink>
+              <FooterLink href="/services">Expertise</FooterLink>
+              <FooterLink href="/listings">Inventory</FooterLink>
+              <FooterLink href="/contact">Inquiry</FooterLink>
+            </ul>
+          </div>
+
+          <div className="md:col-span-3">
+            <h4 className="text-[10px] uppercase tracking-[0.3em] font-bold text-white mb-6">Capabilities</h4>
+            <ul className="space-y-3 text-sm">
+              <li className="hover:text-emerald-400 transition-colors cursor-default">Strategic Acquisitions</li>
+              <li className="hover:text-emerald-400 transition-colors cursor-default">Capital Appreciation</li>
+              <li className="hover:text-emerald-400 transition-colors cursor-default">Asset Stewardship</li>
+              <li className="hover:text-emerald-400 transition-colors cursor-default">Yield Management</li>
+            </ul>
+          </div>
+
+          <div className="md:col-span-3">
+            <h4 className="text-[10px] uppercase tracking-[0.3em] font-bold text-white mb-6">Headquarters</h4>
+            <address className="not-italic space-y-5 text-sm">
+              <ContactItem Icon={MapPin} text="Chandrapur, Maharashtra, India" />
+              <ContactItem Icon={Phone} text="+91 95495 46568" />
+              <ContactItem Icon={Mail} text="info@riddhibuilders.com" />
+            </address>
+          </div>
+        </div>
+
+        {/* BOTTOM BAR */}
+        <div className="border-t border-white/5 py-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-[0.2em] text-zinc-600">
+          <p>© {currentYear} Riddhi Builders — Legacy in Every Dimension.</p>
           <p>
-            © {new Date().getFullYear()} Riddhi Builders. All Rights Reserved.
-          </p>
-
-          <p className="mt-2 md:mt-0">
-            Crafted with ❤️ by{" "}
-            <span className="text-white font-semibold">
-             CodewithAshX
-            </span>
+            Developed by <span className="text-zinc-400">CodewithAshX</span>
           </p>
         </div>
+      </div>
+
+      {/* Optimized Background Decorative Text - will-change added for perf */}
+      <div 
+        className="absolute -bottom-6 md:-bottom-10 left-0 right-0 pointer-events-none select-none opacity-[0.02] text-[15vw] font-bold text-white leading-none text-center whitespace-nowrap will-change-transform"
+        aria-hidden="true"
+      >
+        RIDDHI BUILDERS
       </div>
     </footer>
   );
 }
 
-/* ================= HELPERS ================= */
+/* ================= OPTIMIZED HELPERS ================= */
 
-function FooterLink({
-  href,
-  children,
-}: {
-  href: string;
-  children: React.ReactNode;
-}) {
+function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <li>
       <Link
         href={href}
-        className="relative inline-block text-gray-400
-                   after:absolute after:left-0 after:-bottom-1
-                   after:h-px after:w-0 after:bg-emerald-500
-                   after:transition-all hover:after:w-full
-                   hover:text-white transition"
+        className="text-sm hover:text-emerald-400 transition-colors flex items-center group py-1"
       >
+        <span className="h-px w-0 bg-emerald-500 mr-0 group-hover:w-3 group-hover:mr-2 transition-all duration-300" />
         {children}
       </Link>
     </li>
   );
 }
 
-function SocialIcon({
-  href,
-  Icon,
-}: {
-  href: string;
-  Icon: any;
-}) {
+function ContactItem({ Icon, text }: { Icon: any, text: string }) {
+  return (
+    <div className="flex gap-4 items-start">
+      <Icon size={18} className="text-emerald-500 shrink-0 mt-0.5" />
+      <span className="leading-relaxed">{text}</span>
+    </div>
+  );
+}
+
+function SocialIcon({ href, Icon, label }: { href: string; Icon: any; label: string }) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="h-10 w-10 rounded-full
-                 border border-gray-700
-                 flex items-center justify-center
-                 hover:bg-emerald-600 hover:border-emerald-600
-                 hover:text-white transition"
+      aria-label={label}
+      className="h-10 w-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-emerald-500 hover:border-emerald-500 hover:text-white transition-all duration-300 active:scale-95"
     >
-      <Icon size={18} />
+      <Icon size={16} />
     </a>
   );
 }
