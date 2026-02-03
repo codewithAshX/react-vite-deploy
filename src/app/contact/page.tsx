@@ -1,27 +1,29 @@
 "use client";
 
 import React, { useState } from "react";
-// Explicitly import Variants type to solve the build error
+// FIXED: Added AnimatePresence to the import list
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { Clock, Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
 
 /* ================= ANIMATION VARIANTS ================= */
 
-/** * FIXED: Added explicit 'Variants' type. 
- * This prevents the "ease: number[] is not assignable to Easing" error 
- */
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } 
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { 
+      duration: 0.8, 
+      ease: [0.22, 1, 0.36, 1] 
+    },
   },
 };
 
 const containerStagger: Variants = {
   visible: { transition: { staggerChildren: 0.1 } }
 };
+
+/* ================= MAIN COMPONENT ================= */
 
 export default function ContactPage() {
   const [loading, setLoading] = useState(false);
@@ -49,7 +51,7 @@ export default function ContactPage() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 50 }}
-            className="fixed bottom-10 right-10 z-[100] bg-zinc-900 border border-emerald-500/50 p-6 rounded-2xl shadow-2xl flex items-center gap-4"
+            className="fixed bottom-10 right-6 md:right-10 z-[100] bg-zinc-900 border border-emerald-500/50 p-6 rounded-2xl shadow-2xl flex items-center gap-4"
           >
             <div className="h-10 w-10 bg-emerald-500/10 rounded-full flex items-center justify-center text-emerald-500">
               <CheckCircle2 size={24} />
