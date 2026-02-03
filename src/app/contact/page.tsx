@@ -1,12 +1,16 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+// Explicitly import Variants type to solve the build error
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { Clock, Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
 
 /* ================= ANIMATION VARIANTS ================= */
 
-const fadeUp = {
+/** * FIXED: Added explicit 'Variants' type. 
+ * This prevents the "ease: number[] is not assignable to Easing" error 
+ */
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: { 
     opacity: 1, 
@@ -15,7 +19,7 @@ const fadeUp = {
   },
 };
 
-const containerStagger = {
+const containerStagger: Variants = {
   visible: { transition: { staggerChildren: 0.1 } }
 };
 
@@ -26,6 +30,7 @@ export default function ContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    
     // Simulate high-end concierge response time
     setTimeout(() => {
       setLoading(false);
@@ -130,6 +135,7 @@ export default function ContactPage() {
 
                 <button 
                   disabled={loading}
+                  type="submit"
                   className="group w-full md:w-auto bg-emerald-600 hover:bg-emerald-500 text-white px-10 py-5 rounded-full font-bold uppercase tracking-tighter flex items-center justify-center gap-4 transition-all disabled:opacity-50"
                 >
                   {loading ? "Transmitting..." : "Send Inquiry"}
@@ -141,7 +147,6 @@ export default function ContactPage() {
             {/* ================= RIGHT: INFO ================= */}
             <div className="lg:col-span-5 space-y-12">
               
-              {/* Contact Cards */}
               <motion.div 
                 variants={containerStagger}
                 initial="hidden"
@@ -166,7 +171,6 @@ export default function ContactPage() {
                 ))}
               </motion.div>
 
-              {/* Office Hours */}
               <motion.div 
                 initial={{ opacity: 0 }} 
                 whileInView={{ opacity: 1 }} 

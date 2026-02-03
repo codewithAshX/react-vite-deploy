@@ -1,8 +1,10 @@
 "use client";
-import { motion } from "framer-motion";
-// import { motion } from "motion/react";
+import React from "react";
+// Added Variants for TS stability
+import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+// Added LucideIcon for proper typing
 import {
   Facebook,
   Twitter,
@@ -13,12 +15,18 @@ import {
   Phone,
   MapPin,
   ArrowRight,
+  LucideIcon,
 } from "lucide-react";
 
-// Variants for smoother, hardware-accelerated animations
-const footerVariants = {
+/* ================= ANIMATION VARIANTS ================= */
+
+const footerVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } 
+  }
 };
 
 export default function Footer() {
@@ -27,7 +35,7 @@ export default function Footer() {
   return (
     <footer className="relative bg-[#050505] text-zinc-400 overflow-hidden pt-12 md:pt-20 border-t border-white/5">
       
-      {/* Optimized Background Lines - hidden on mobile to save paint cycles */}
+      {/* Background Decorative Lines */}
       <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-white/5 to-transparent hidden lg:block pointer-events-none" />
       <div className="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-white/5 to-transparent hidden lg:block pointer-events-none" />
 
@@ -67,17 +75,18 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-12 md:gap-16 py-16">
           
           <div className="md:col-span-4">
-            <Link href="/" className="inline-block mb-6 grayscale invert brightness-200 opacity-80 hover:opacity-100 transition-opacity">
+            <Link href="/" className="inline-block mb-6 transition-all hover:opacity-80">
               <Image
                 src="/Riddhi-Builders-4-1-1024x611.PNG"
                 alt="Riddhi Builders Logo"
-                width={120}
-                height={43}
+                width={160}
+                height={57}
+                // Consistency: Applying the Emerald Filter to the footer logo too
+                className="object-contain grayscale brightness-[1.2] sepia-[1] hue-rotate-[100deg] saturate-[5]"
                 loading="lazy"
-                className="object-contain"
               />
             </Link>
-            <p className="text-sm leading-relaxed mb-8 max-w-xs">
+            <p className="text-sm leading-relaxed mb-8 max-w-xs text-zinc-500">
               Defining the skyline of Maharashtra with high-yield residential 
               assets and sustainable commercial architecture.
             </p>
@@ -128,7 +137,7 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Optimized Background Decorative Text - will-change added for perf */}
+      {/* Decorative Background Text */}
       <div 
         className="absolute -bottom-6 md:-bottom-10 left-0 right-0 pointer-events-none select-none opacity-[0.02] text-[15vw] font-bold text-white leading-none text-center whitespace-nowrap will-change-transform"
         aria-hidden="true"
@@ -139,7 +148,7 @@ export default function Footer() {
   );
 }
 
-/* ================= OPTIMIZED HELPERS ================= */
+/* ================= TYPED HELPERS ================= */
 
 function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
@@ -155,7 +164,7 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
   );
 }
 
-function ContactItem({ Icon, text }: { Icon: any, text: string }) {
+function ContactItem({ Icon, text }: { Icon: LucideIcon; text: string }) {
   return (
     <div className="flex gap-4 items-start">
       <Icon size={18} className="text-emerald-500 shrink-0 mt-0.5" />
@@ -164,7 +173,7 @@ function ContactItem({ Icon, text }: { Icon: any, text: string }) {
   );
 }
 
-function SocialIcon({ href, Icon, label }: { href: string; Icon: any; label: string }) {
+function SocialIcon({ href, Icon, label }: { href: string; Icon: LucideIcon; label: string }) {
   return (
     <a
       href={href}
