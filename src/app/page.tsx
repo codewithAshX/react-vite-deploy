@@ -41,14 +41,18 @@ const Preloader = ({ finishLoading }: { finishLoading: () => void }) => {
         className="relative mb-12"
       >
         <Image 
-          src="/Riddhi-Builders-4-1-1024x611.PNG" 
-          alt="Riddhi Builders Logo" 
-          width={280} 
-          height={160} 
-          // Advanced filter to convert Orange/Blue logo to Emerald
-          className="brightness-[1.2] contrast-[1.2] sepia-[1] hue-rotate-[100deg] saturate-[10] drop-shadow-[0_0_20px_rgba(16,185,129,0.5)]"
-          priority
-        />
+  src="/Riddhi-Builders-4-1-1024x611.PNG" 
+  alt="Riddhi Builders Logo" 
+  width={280} 
+  height={160} 
+  /* This specific filter sequence:
+     1. Desaturates the orange/blue (grayscale)
+     2. Adds an emerald tint (sepia + hue-rotate)
+     3. Boosts it to look like a glow (saturate + brightness)
+  */
+  className="grayscale brightness-[1.2] sepia-[1] hue-rotate-[100deg] saturate-[10] drop-shadow-[0_0_20px_rgba(16,185,129,0.5)]"
+  priority
+/>
         
         <motion.div 
           initial={{ x: "-100%" }}
