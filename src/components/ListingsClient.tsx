@@ -22,7 +22,6 @@ const ALL_PROPERTIES = [
     tag: "Premium Project",
     image:
       "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2000",
-
     details: {
       tagline: "Rising Above the Ordinary",
       developer: "Riddhi Builders",
@@ -45,7 +44,6 @@ const ALL_PROPERTIES = [
     tag: "Luxury Living",
     image:
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=2000",
-
     details: {
       tagline: "Innovation Meets Indulgence",
       developer: "Riddhi Builders",
@@ -55,94 +53,56 @@ const ALL_PROPERTIES = [
   },
 
   {
-  id: 3,
-
-  /* === LISTING FIELDS === */
-  title: "Riddhi Legacy Towers",
-  price: null,
-  location: "Padoli / Kosara Area",
-  city: "Chandrapur",
-  status: "Under Construction",
-  type: "2 BHK Apartments",
-  beds: 2,
-  baths: 2,
-  area: "Spacious 2 BHK Layouts",
-  tag: "Luxury Towers",
-  image:
-    "https://images.unsplash.com/photo-1600607687920-4e2b6a2f3f38?q=80&w=2000",
-
-  /* === BROCHURE DETAILS === */
-  details: {
-    tagline: "Spaces as Spacious as Your Heart",
-    developer: "Riddhi Builders",
-    configuration: "2 BHK Luxurious Flats",
-
-    overview:
-      "Riddhi Legacy Towers is a thoughtfully planned residential project featuring two elegant towers with premium 2 BHK apartments. Designed for comfort, security, and lifestyle, the project offers open spaces, modern amenities, and quality construction for peaceful urban living.",
-
-    highlights: [
-      "Twin residential towers – Tower A & Tower B",
-      "Spacious 2 BHK luxury apartments",
-      "Podium landscape garden",
-      "Modern elevation and premium façade",
-      "Well-planned internal circulation",
-      "Quality construction and fittings"
-    ],
-
-    floorPlanning: [
-      "Ground Floor – Parking & Services",
-      "Podium Level – Landscape Garden",
-      "1st to 6th Floor – Residential Apartments (Tower A & B)"
-    ],
-
-    amenities: [
-      "Impressive main gate with security cabin",
-      "Designer entrance lobby",
-      "Podium garden with seating areas",
-      "Jogging / walking track",
-      "Visitors parking",
-      "24x7 security surveillance",
-      "Rainwater harvesting",
-      "2 lifts in each tower with ARD"
-    ],
-
-    specifications: {
-      structure: "RCC framed structure as per structural design",
-      walls: "Brick wall masonry as per architectural drawing",
-      plaster: "Internal smooth finish & external sand-faced plaster",
-      flooring: "Vitrified tiles in all rooms & ceramic tiles in balcony",
-      kitchen: "Granite kitchen platform with stainless steel sink",
-      doors: "Decorative main door & flush internal doors",
-      windows: "Fully glazed aluminium sliding windows",
-      electrical:
-        "Concealed copper wiring with modular switches and sufficient power points",
-      plumbing:
-        "Concealed plumbing with branded sanitary fittings",
-      painting:
-        "Internal OBD paint & external weather-proof paint",
-      lift: "Passenger lifts with ARD",
-      parking: "Allotted covered parking"
+    id: 3,
+    title: "Riddhi Legacy Towers",
+    price: null,
+    location: "Padoli / Kosara Area",
+    city: "Chandrapur",
+    status: "Under Construction",
+    type: "2 BHK Apartments",
+    beds: 2,
+    baths: 2,
+    area: "Spacious 2 BHK Layouts",
+    tag: "Luxury Towers",
+    image:
+      "https://images.unsplash.com/photo-1600607687920-4e2b6a2f3f38?q=80&w=2000",
+    details: {
+      tagline: "Spaces as Spacious as Your Heart",
+      developer: "Riddhi Builders",
+      configuration: "2 BHK Luxurious Flats",
+      overview:
+        "Riddhi Legacy Towers is a thoughtfully planned residential project featuring two elegant towers with premium 2 BHK apartments.",
+      brochure: "/Riddhi-Legacy-Towers.pdf",
+      brandingNote: "1350+ Happy Families",
     },
+  },
 
-    images: {
-      hero:
-        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2000",
-      locationPlan:
-        "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2000",
-      floorPlans: [
-        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2000"
-      ],
-      interiors: [
-        "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=2000"
-      ]
+  {
+    id: 4,
+    title: "Riddhi 55 Villas",
+    price: null,
+    location: "Mul Road",
+    city: "Chandrapur",
+    status: "Under Construction",
+    type: "3 BHK Independent Villas",
+    beds: 3,
+    baths: 3,
+    area: "Spacious Independent Layouts",
+    tag: "Ultra Luxury Villas",
+    image:
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2000",
+    details: {
+      tagline: "Sunshine. Breeze. A New Way of Life.",
+      developer: "Riddhi Builders",
+      configuration: "3 BHK Independent Bungalows (55 Villas)",
+      overview:
+        "An exclusive gated community of 55 premium independent villas designed for light, ventilation, and privacy.",
+      brochure: "/Riddhi-55-Villas.pdf",
+      brandingNote: "Only 55 Exclusive Independent Villas",
     },
-
-    brochure: "/Riddhi-Legacy-Towers.pdf",
-    brandingNote: "1350+ Happy Families"
-  }
-}
-
+  },
 ];
+
 
 /* ================= MAIN PAGE ================= */
 

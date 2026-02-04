@@ -127,6 +127,117 @@ const PROJECTS: Record<string, any> = {
       "Rainwater harvesting",
     ],
   },
+  "3": {
+  title: "Riddhi Legacy Towers",
+  tagline: "Spaces as Spacious as Your Heart",
+  location: "Padoli – Kosara Area, Chandrapur",
+  hero:
+    "https://images.unsplash.com/photo-1600607687920-4e2b6a2f3f38?q=80&w=2000",
+
+  config: "2 BHK Luxurious Apartments",
+  beds: "2 Bedrooms",
+  baths: "2 Bathrooms",
+  area: "Spacious 2 BHK Layouts",
+  developer: "Riddhi Builders",
+
+  overview:
+    "Riddhi Legacy Towers is a thoughtfully planned residential development comprising two elegant towers – Tower A and Tower B. Designed to deliver comfort, openness, and quality living, the project features premium 2 BHK apartments with podium-level landscaped garden, modern amenities, and quality construction for peaceful urban living.",
+
+  highlights: [
+    "Twin residential towers – Tower A & Tower B",
+    "Spacious 2 BHK luxury apartments",
+    "Podium landscape garden with seating",
+    "Modern elevation with premium façade",
+    "Well-planned internal circulation",
+    "Quality construction and fittings"
+  ],
+
+  floors: [
+    "Ground Floor – Parking & services",
+    "Podium Level – Landscaped garden & amenities",
+    "1st to 6th Floor – Typical residential apartments (Tower A & B)"
+  ],
+
+  parking: [
+    "Allotted covered parking",
+    "Separate visitor parking area"
+  ],
+
+  amenities: [
+    "Impressive main gate with security cabin",
+    "Designer entrance lobby for both buildings",
+    "Podium garden with seating area",
+    "Jogging / walking track",
+    "Visitors parking area",
+    "24x7 security surveillance",
+    "Rainwater harvesting",
+    "2 lifts in each tower with ARD"
+  ],
+
+  specifications: [
+    "RCC framed structure as per structural design",
+    "Brick masonry walls as per architectural drawings",
+    "Internal smooth finish & external sand-faced plaster",
+    "Vitrified flooring in all rooms & ceramic tiles in balconies",
+    "Granite kitchen platform with stainless steel sink",
+    "Decorative main door & flush internal doors",
+    "Fully glazed aluminium sliding windows",
+    "Concealed copper wiring with modular switches",
+    "Concealed plumbing with branded sanitary fittings",
+    "Internal OBD paint & external weather-proof paint"
+  ],
+
+  brandingNote: "1350+ Happy Families"
+},
+
+  "4": {
+  title: "Riddhi 55 Villas",
+  tagline: "Sunshine. Breeze. A New Way of Life.",
+  location: "Mul Road, Chandrapur",
+  hero:
+    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2000",
+
+  config: "3 BHK Independent Villas",
+  beds: "3 Bedrooms",
+  baths: "3 Bathrooms",
+  area: "Independent Villa Layouts",
+  developer: "Riddhi Builders",
+
+  overview:
+    "Riddhi 55 Villas is an exclusive gated residential enclave featuring only 55 premium 3 BHK independent villas. Designed for abundant natural light, ventilation, and privacy, the project offers a serene lifestyle with landscaped surroundings, wide internal roads, and contemporary architecture.",
+
+  highlights: [
+    "Limited edition development with only 55 villas",
+    "Independent 3 BHK bungalows with private open spaces",
+    "Wide internal roads with landscaped avenues",
+    "Modern elevation with premium façade design",
+    "Excellent natural light & cross ventilation",
+    "Secure gated community living",
+  ],
+
+  floors: [
+    "Ground Floor – Living, Dining, Kitchen, Bedroom & Parking",
+    "First Floor – Bedrooms with attached toilets & balcony",
+    "Private open terrace areas",
+  ],
+
+  parking: [
+    "Dedicated private parking for each villa",
+    "Wide driveway for smooth internal circulation",
+  ],
+
+  amenities: [
+    "Landscaped internal gardens",
+    "Jogging / walking pathways",
+    "Children’s play area",
+    "Dedicated internal roads",
+    "Street lighting",
+    "24x7 security",
+    "CCTV surveillance",
+    "Rainwater harvesting",
+  ],
+},
+
 };
 
 /* ================= PAGE ================= */
